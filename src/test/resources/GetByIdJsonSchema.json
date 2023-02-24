@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "book": {
+      "type": "object",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "author": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "isElectronicBook": {
+              "type": "boolean"
+            },
+            "name": {
+              "type": "string"
+            },
+            "year": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "author",
+            "id",
+            "isElectronicBook",
+            "name",
+            "year"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "book"
+  ]
+}
