@@ -32,7 +32,7 @@ public class PutTest {
     }
 
     @Test
-    //id=19
+        //id=19
     void putNonExistentBook() {
         String errorPath = data.getPath() + "/" + data.getErrorId();
         given()
@@ -45,7 +45,7 @@ public class PutTest {
     }
 
     @Test
-    //id=20
+        //id=20
     void putBookWithoutAuthor() {
         given()
                 .baseUri(data.getBaseUri())
@@ -59,7 +59,7 @@ public class PutTest {
     }
 
     @Test
-    //id=21
+        //id=21
     void putBookWithoutName() {
         given()
                 .baseUri(data.getBaseUri())
@@ -73,7 +73,7 @@ public class PutTest {
     }
 
     @Test
-    //id=22
+        //id=22
     void putBookWithoutYear() {
         given()
                 .baseUri(data.getBaseUri())
@@ -87,7 +87,7 @@ public class PutTest {
     }
 
     @Test
-    //id=23
+        //id=23
     void putBookWithoutIsElectronicBook() {
         given()
                 .baseUri(data.getBaseUri())
@@ -102,7 +102,7 @@ public class PutTest {
     }
 
     @Test
-    //id=24
+        //id=24
     void putABook() {
         given()
                 .baseUri(data.getBaseUri())
@@ -122,7 +122,7 @@ public class PutTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"\"\"", "1", "null", "true"})
-    //id=25
+        //id=25
     void putBookWithWrongName(String name) {
         given()
                 .baseUri(data.getBaseUri())
@@ -137,7 +137,7 @@ public class PutTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "null", "true"})
-    //id=26
+        //id=26
     void putBookWithWrongAuthor(String author) {
         given()
                 .baseUri(data.getBaseUri())
@@ -152,7 +152,7 @@ public class PutTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"\"year\"", "null", "true"})
-    //id=27
+        //id=27
     void putBookWithWrongYear(String year) {
         given()
                 .baseUri(data.getBaseUri())
@@ -168,7 +168,7 @@ public class PutTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"\"isElectronicBook\"", "null", "1"})
-    //id=28
+        //id=28
     void putBookWithWrongIsElectronicBook(String isElectronicBook) {
         given()
                 .baseUri(data.getBaseUri())
@@ -183,7 +183,7 @@ public class PutTest {
     }
 
     @Test
-    //id=29
+        //id=29
     void putBookWithoutJsonBody() {
         given()
                 .baseUri(data.getBaseUri())
@@ -197,7 +197,7 @@ public class PutTest {
     }
 
     @Test
-    //id=30
+        //id=30
     void getAfterPutBook() {
         given()
                 .baseUri(data.getBaseUri())
@@ -218,7 +218,7 @@ public class PutTest {
     }
 
     @Test
-    //id=31
+        //id=31
     void getModifiedBook() {
         given()
                 .baseUri(data.getBaseUri())

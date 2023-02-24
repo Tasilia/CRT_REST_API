@@ -18,7 +18,7 @@ public class PostTest {
     Book book = data.getBook();
 
     @Test
-    //id=9
+        //id=9
     void getAfterPostBook() {
         ArrayList body =
                 given()
@@ -29,8 +29,8 @@ public class PostTest {
                         .extract()
                         .path("books");
         int size = body.size();
-        String lastBook = body.get(size-1).toString();
-        String id = lastBook.substring(lastBook.indexOf("id")+3, lastBook.indexOf(",",lastBook.indexOf("id")));
+        String lastBook = body.get(size - 1).toString();
+        String id = lastBook.substring(lastBook.indexOf("id") + 3, lastBook.indexOf(",", lastBook.indexOf("id")));
         given()
                 .baseUri(data.getBaseUri())
                 .contentType("application/json")
@@ -43,7 +43,7 @@ public class PostTest {
                         .when()
                         .get(data.getPath())
                         .then()
-                        .body("books[-1].id", equalTo(Integer.parseInt(id)+1))
+                        .body("books[-1].id", equalTo(Integer.parseInt(id) + 1))
                         .body("books[-1].name", equalTo(book.getName()))
                         .body("books[-1].author", equalTo(book.getAuthor()))
                         .body("books[-1].year", equalTo(book.getYear()))
@@ -53,33 +53,34 @@ public class PostTest {
         int sizeAfterPost = bodyAfterPost.size();
         Assertions.assertEquals(1, sizeAfterPost - size);
     }
+
     @Test
-    //id=10
+        //id=10
     void getPostedBook() {
         int id =
-            given()
-                    .baseUri(data.getBaseUri())
-                    .contentType("application/json")
-                    .body(book)
-                    .when()
-                    .post(data.getPath())
-                    .then()
-                    .extract()
-                    .path("book.id");
                 given()
                         .baseUri(data.getBaseUri())
+                        .contentType("application/json")
+                        .body(book)
                         .when()
-                        .get(data.getPath() + "/" + id)
+                        .post(data.getPath())
                         .then()
-                        .body("book.id", equalTo(id))
-                        .body("book.name", equalTo(book.getName()))
-                        .body("book.author", equalTo(book.getAuthor()))
-                        .body("book.year", equalTo(book.getYear()))
-                        .body("book.isElectronicBook", equalTo(book.getIsElectronicBook()));
+                        .extract()
+                        .path("book.id");
+        given()
+                .baseUri(data.getBaseUri())
+                .when()
+                .get(data.getPath() + "/" + id)
+                .then()
+                .body("book.id", equalTo(id))
+                .body("book.name", equalTo(book.getName()))
+                .body("book.author", equalTo(book.getAuthor()))
+                .body("book.year", equalTo(book.getYear()))
+                .body("book.isElectronicBook", equalTo(book.getIsElectronicBook()));
     }
 
     @Test
-    //id=11
+        //id=11
     void postBook() {
         int lastId =
                 given()
@@ -106,7 +107,7 @@ public class PostTest {
     }
 
     @Test
-    //id=12
+        //id=12
     void postBookWithOnlyName() {
         int lastId =
                 given()
@@ -134,7 +135,7 @@ public class PostTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"\"\"", "1", "null", "true"})
-    //id=13
+        //id=13
     void postBookWithWrongName(String name) {
         given()
                 .baseUri(data.getBaseUri())
@@ -149,7 +150,7 @@ public class PostTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "null", "true"})
-    //id=14
+        //id=14
     void postBookWithWrongAuthor(String author) {
         given()
                 .baseUri(data.getBaseUri())
@@ -165,7 +166,7 @@ public class PostTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"\"year\"", "null", "true"})
-    //id=15
+        //id=15
     void postBookWithWrongYear(String year) {
         given()
                 .baseUri(data.getBaseUri())
@@ -180,7 +181,7 @@ public class PostTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"\"isElectronicBook\"", "null", "1"})
-    //id=16
+        //id=16
     void postBookWithWrongIsElectronicBook(String isElectronicBook) {
         given()
                 .baseUri(data.getBaseUri())
@@ -193,7 +194,7 @@ public class PostTest {
     }
 
     @Test
-    //id=17
+        //id=17
     void postBookWithoutAName() {
         given()
                 .baseUri(data.getBaseUri())
@@ -207,7 +208,7 @@ public class PostTest {
     }
 
     @Test
-    //id=18
+        //id=18
     void postBookWithoutJsonBody() {
         given()
                 .baseUri(data.getBaseUri())

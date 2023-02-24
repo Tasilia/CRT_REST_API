@@ -34,7 +34,7 @@ public class DeleteTest {
     }
 
     @Test
-    //id=4
+        //id=4
     void deleteANonExistentBook() {
         String path = data.getPath() + "/" + data.getErrorId();
         given()
@@ -47,7 +47,7 @@ public class DeleteTest {
     }
 
     @Test
-    //id=5
+        //id=5
     void deleteBook() {
         String path = data.getPath() + "/" + ids.get(0);
         given()
@@ -60,7 +60,7 @@ public class DeleteTest {
     }
 
     @Test
-    //id=6
+        //id=6
     void getAfterDeleteBook() {
         ArrayList body =
                 given()
@@ -89,7 +89,7 @@ public class DeleteTest {
     }
 
     @Test
-    //id=7
+        //id=7
     void getDeletedBook() {
         String path = data.getPath() + "/" + ids.get(3);
         given()
@@ -107,7 +107,7 @@ public class DeleteTest {
     }
 
     @Test
-    //id=8
+        //id=8
     void addBookAfterDeleteBook() {
         String path = data.getPath() + "/" + ids.get(2);
         given()
