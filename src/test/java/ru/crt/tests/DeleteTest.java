@@ -14,11 +14,11 @@ import static org.hamcrest.Matchers.equalTo;
 public class DeleteTest {
     static Data data = new Data();
     static Book book = data.getBook();
-    static ArrayList<String> ids = new ArrayList<>(4);
+    static ArrayList<String> ids = new ArrayList<>(3);
 
     @BeforeAll
     static void postBooks() {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             int id =
                     given()
                             .baseUri(data.getBaseUri())
@@ -91,7 +91,7 @@ public class DeleteTest {
     @Test
         //id=7
     void getDeletedBook() {
-        String path = data.getPath() + "/" + ids.get(3);
+        String path = data.getPath() + "/" + ids.get(2);
         given()
                 .baseUri(data.getBaseUri())
                 .when()
@@ -102,14 +102,28 @@ public class DeleteTest {
                 .get(path)
                 .then()
                 .statusCode(404)
-                .body("error", equalTo(data.getErrorMessage(ids.get(3))));
+                .body("error", equalTo(data.getErrorMessage(ids.get(2))));
 
     }
 
     @Test
         //id=8
     void addBookAfterDeleteBook() {
-        String path = data.getPath() + "/" + ids.get(2);
+        ArrayList<String> ids = new ArrayList<>(3);
+        for (int i = 0; i < 2; i++) {
+            int id =
+                    given()
+                            .baseUri(data.getBaseUri())
+                            .contentType("application/json")
+                            .body(book)
+                            .when()
+                            .post(data.getPath())
+                            .then()
+                            .extract()
+                            .path("book.id");
+            ids.add(Integer.toString(id));
+        }
+        String path = data.getPath() + "/" + ids.get(0);
         given()
                 .baseUri(data.getBaseUri())
                 .when()
@@ -121,7 +135,7 @@ public class DeleteTest {
                 .when()
                 .post(data.getPath())
                 .then()
-                .body("book.id", equalTo(Integer.parseInt(ids.get(3)) + 1));
+                .body("book.id", equalTo(Integer.parseInt(ids.get(1)) + 1));
 
     }
 }

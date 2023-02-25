@@ -237,4 +237,20 @@ public class PutTest {
                 .body("book.year", equalTo(updatedBook.getYear()))
                 .body("book.isElectronicBook", equalTo(updatedBook.getIsElectronicBook()));
     }
+
+    @Test
+        //id=32
+    void putBookWithAdditionalProperty() {
+        given()
+                .baseUri(data.getBaseUri())
+                .contentType("application/json")
+                .body("{\"name\": \"" + updatedBook.getName() + "\", \"author\": \"" + updatedBook.getAuthor() +
+                        "\", \"year\": " + updatedBook.getYear() + ", \"isElectronicBook\": " +
+                        updatedBook.getIsElectronicBook() + ", \"cost\": 300}")
+                .when()
+                .put(path)
+                .then()
+                .statusCode(200)
+                .body("book.cost", equalTo(null));
+    }
 }

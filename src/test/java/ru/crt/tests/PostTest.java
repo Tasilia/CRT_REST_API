@@ -220,4 +220,19 @@ public class PostTest {
                 .statusCode(400)
                 .body("error", equalTo(data.getRequiredNameError()));
     }
+    @Test
+        //id=33
+    void postBookWithAdditionalProperty() {
+        given()
+                .baseUri(data.getBaseUri())
+                .contentType("application/json")
+                .body("{\"name\": \"" + book.getName() + "\", \"author\": \"" + book.getAuthor() +
+                        "\", \"year\": " + book.getYear() + ", \"isElectronicBook\": " +
+                        book.getIsElectronicBook() + ", \"cost\": 300}")
+                .when()
+                .post(data.getPath())
+                .then()
+                .statusCode(201)
+                .body("book.cost", equalTo(null));
+    }
 }
