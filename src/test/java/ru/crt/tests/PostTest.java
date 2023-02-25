@@ -161,7 +161,6 @@ public class PostTest {
                 .then()
                 .statusCode(400)
                 .body("error", equalTo(data.getAuthorErrorMessage()));
-        ;
     }
 
     @ParameterizedTest
@@ -220,6 +219,7 @@ public class PostTest {
                 .statusCode(400)
                 .body("error", equalTo(data.getRequiredNameError()));
     }
+
     @Test
         //id=33
     void postBookWithAdditionalProperty() {
